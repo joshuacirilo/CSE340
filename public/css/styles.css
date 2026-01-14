@@ -1,6 +1,252 @@
-/******* Change Box Model ***************/
+/* ===== Base reset ===== */
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #111;
+}
+
+
+/* Main content container */
+.content {
+  width: 70%;                 
+  margin: 0 auto;             
+  background-color: #ffffff;  
+  border: 7px solid #5bc0eb;  
+  padding: 24px;             
+  min-height: 80vh;      
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+/* ===== Page background===== */
+.page {
+  background: url("/images/site/small_check.jpg") center/cover no-repeat;; 
+  min-height: 100vh;
+  padding: 28px 18px;
+}
+
+/* Main centered container */
+.shell {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #c9c9c9;
+  padding: 18px 18px 28px;
+}
+
+/* ===== Header ===== */
+.header {
+  display: grid;
+  gap: 12px;
+}
+
+.header__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.header__label {
+  font-size: 12px;
+  color: #222;
+}
+
+/* Nav row with blocks */
+.header__nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #3a3a3a;
+  background: #fff;
+  overflow: hidden;
+}
+
+.nav-item {
+  /* Each block */
+  display: grid;
+  place-items: center;
+  padding: 16px 10px;
+  text-decoration: none;
+  color: #111;
+  border-right: 1px solid #3a3a3a;
+  font-size: 14px;
+}
+
+.nav-item:last-child {
+  border-right: none;
+}
+
+.nav-item--active {
+  /* Blue blocks like the mock */
+  background: #099dc8;
+  color: #fff;
+}
+
+/* ===== Hero (green image) ===== */
+.hero {
+  /* Replace with your hero image */
+  /* background: url("images/hero.jpg") center/cover no-repeat; */
+  background: #8fd06b; /* placeholder green */
+  border: 1px solid #6b6b6b;
+  margin-top: 18px;
+  padding: 22px;
+  min-height: 280px;
+  position: relative;
+}
+
+.hero__title {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Small card inside hero */
+.hero__card {
+  width: 120px;
+  background: #fff;
+  border: 1px solid #6b6b6b;
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.hero__text {
+  margin: 0;
+  font-size: 13px;
+}
+
+.hero__btn {
+  border: 1px solid #6b6b6b;
+  background: #f4f4f4;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* ===== Content ===== */
+.content {
+  margin-top: 18px;
+}
+
+.content__headings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 10px;
+  margin: 10px 0 14px;
+}
+
+.content__heading {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.content__heading--right {
+  text-align: center;
+}
+
+/* Two-column layout: cards left / bullets right */
+.content__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 26px;
+}
+
+/* Cards 2x2 */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 140px);
+  gap: 26px 34px;
+  align-content: start;
+}
+
+.card {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+/* Image placeholder above link */
+.card__img {
+  width: 95px;
+  height: 95px;
+  border: 1px solid #6b6b6b;
+
+  /* If you prefer background images per card, you can set it later */
+  background: #fff;
+}
+
+.card__link {
+  font-size: 12px;
+  color: #1a4cff;
+  text-decoration: underline;
+}
+
+/* Right side bullet list */
+.side__list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 18px;
+  font-size: 13px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 720px) {
+  .header__nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    justify-items: center;
+  }
+
+  .content__headings {
+    grid-template-columns: 1fr;
+  }
+
+  .content__heading--right {
+    text-align: left;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .content {
+    width: 85%;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    width: 95%;
+    padding: 16px;
+  }
+}
+
