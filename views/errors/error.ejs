@@ -1,0 +1,13 @@
+<%# Error view - title and message passed from render %>
+
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { %>
+<h1>Oops!</h1>
+<% } %>
+
+<section class="error-message" aria-label="Error details">
+  <p class="error-message__intro">Our hamsters are confused. Here's what they said:</p>
+  <p class="error-message__text"><%- message %></p>
+  <p class="error-message__outro">Don't worry &mdash; even our DeLorean has bad days. <a href="/" title="Return to home">Take me home</a>.</p>
+</section>

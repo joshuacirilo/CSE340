@@ -2,6 +2,16 @@ const invModel = require("../models/inventory-model")
 const Util = {}
 
 /* **************************************
+ * Normaliza la ruta de imagen del inventario (vehículos en /images/vehicles/)
+ * ************************************ */
+function imagePath(relativePath) {
+  if (!relativePath) return '/images/vehicles/no-image-tn.png'
+  if (relativePath.startsWith('/images/vehicles/')) return relativePath
+  if (relativePath.startsWith('/images/')) return '/images/vehicles/' + relativePath.slice(8)
+  return relativePath
+}
+
+/* **************************************
 * Build the classification view HTML
 * ************************************ */
 Util.buildClassificationGrid = async function(data){
@@ -9,10 +19,11 @@ Util.buildClassificationGrid = async function(data){
   if(data.length > 0){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
+      const thumbSrc = imagePath(vehicle.inv_thumbnail)
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + 'details"><img src="' + thumbSrc 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -58,5 +69,13 @@ Util.getNav = async function (req, res, next) {
   list += "</ul>"
   return list
 }
+
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util
