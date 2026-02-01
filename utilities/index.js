@@ -45,7 +45,29 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
-
+/* **************************************
+ * Build the inventory item detail view HTML
+ * ************************************ */
+Util.buildDetailHTML = async function (vehicle) {
+  if (!vehicle) return '<p class="notice">Vehicle not found.</p>'
+  const imgSrc = imagePath(vehicle.inv_image)
+  const priceFormatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(vehicle.inv_price)
+  const milesFormatted = new Intl.NumberFormat('en-US').format(vehicle.inv_miles)
+  let html = '<div class="vehicle-detail">'
+  html += '<div class="vehicle-detail__image">'
+  html += '<img src="' + imgSrc + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' on CSE Motors" />'
+  html += '</div>'
+  html += '<div class="vehicle-detail__content">'
+  html += '<h2 class="vehicle-detail__name">' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
+  html += '<p class="vehicle-detail__year"><strong>Year:</strong> ' + vehicle.inv_year + '</p>'
+  html += '<p class="vehicle-detail__price"><strong>Price:</strong> ' + priceFormatted + '</p>'
+  html += '<p class="vehicle-detail__miles"><strong>Mileage:</strong> ' + milesFormatted + ' miles</p>'
+  html += '<p class="vehicle-detail__color"><strong>Color:</strong> ' + vehicle.inv_color + '</p>'
+  html += '<p class="vehicle-detail__description"><strong>Description:</strong> ' + vehicle.inv_description + '</p>'
+  html += '</div>'
+  html += '</div>'
+  return html
+}
 
 /* ************************
  * Constructs the nav HTML unordered list
